@@ -1,9 +1,8 @@
-package br.com.celfons.service.impl
+package br.com.celfons.service
 
 import br.com.celfons.events.CreatedUserEvent
 import br.com.celfons.repository.UserRepository
-import br.com.celfons.repository.entity.UserEntity
-import br.com.celfons.service.ProcessorService
+import br.com.celfons.entity.UserEntity
 import org.springframework.stereotype.Service
 
 @Service
