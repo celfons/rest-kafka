@@ -7,6 +7,7 @@ import javax.persistence.Id
 
 @Entity(name = "user")
 data class UserEntity(
-    @Id val id: Long? = 1,
-    val createAt: LocalDateTime? = now()
+    @Id private val id: Long? = 1,
+    private val name: String? = null,
+    private val createAt: LocalDateTime? = now()
 )

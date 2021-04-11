@@ -2,8 +2,8 @@ server:
   port : 8082
 
 kafka:
-  topic.id: ksql
-  group.id: ksql
+  topic: ksql
+  group: ksql
 
 spring:
   kafka:

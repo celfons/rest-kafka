@@ -13,4 +13,9 @@ class QueryServiceImpl(
     override fun findAll(): List<UserEntity> =
         repository.findAll().also { if(it.isEmpty()) throw BusinessException("No have users") }
 
+    override fun findById(id: Long): UserEntity =
+        repository.findById(id).orElseThrow { throw BusinessException("User not Found") }
+
+    override fun findByName(name: String): UserEntity = repository.findByName(name)
+
 }

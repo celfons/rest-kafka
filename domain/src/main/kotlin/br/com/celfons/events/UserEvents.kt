@@ -5,5 +5,11 @@ abstract class UserEvent(
 )
 
 data class CreatedUserEvent(
-    val id: Long
+    val id: Long,
+    val name: String
+): UserEvent(id)
+
+data class UpdatedUserEvent(
+    val id: Long,
+    val name: String
 ): UserEvent(id)

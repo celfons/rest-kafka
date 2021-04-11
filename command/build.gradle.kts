@@ -8,6 +8,7 @@ plugins {
 dependencies {
 	implementation(project(":command-api"))
 	implementation(project(":domain"))
+	implementation ("org.apache.kafka:kafka-streams:2.7.0")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -16,6 +17,7 @@ dependencies {
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 	implementation ("org.springframework.kafka:spring-kafka:2.6.7")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.0.2")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

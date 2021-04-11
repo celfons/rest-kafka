@@ -14,7 +14,7 @@ class UserCommandController(
 ): UserCommandApi {
 
     override fun create(@RequestBody request: UserRequest) {
-        val command = CreateUserCommand(request.id)
+        val command = CreateUserCommand(request.id, request.name)
         service.handler(command)
     }
 
