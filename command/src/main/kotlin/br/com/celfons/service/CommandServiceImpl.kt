@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service
 
 @Service
 class CommandServiceImpl(
-    private val producer: KafkaProducer,
+    private val producerService: KafkaProducerService,
     @Value("\${kafka.topic.id}")
     private val topic: String
 ) : CommandService {
 
     override fun handler(command: CreateUserCommand) = try {
         val message = toMessage(command)
-        producer.send(topic, message)
+        producerService.send(topic, message)
         CreatedUserEvent(command.id)
     } catch (exception: Exception) {
         throw exception

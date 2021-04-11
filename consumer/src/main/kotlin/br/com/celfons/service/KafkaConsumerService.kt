@@ -10,9 +10,9 @@ import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
 
 @Component
-class KafkaConsumerImpl {
-
-    @Autowired private lateinit var service: ProcessorService
+class KafkaConsumerService(
+    val service: ProcessorService
+) {
 
     @KafkaListener(topics = ["\${kafka.topic.id}"], groupId = "\${kafka.group.id}")
     fun listen(
@@ -25,7 +25,6 @@ class KafkaConsumerImpl {
                 service.handler(event)
             }
         }
-
     }
 
 }

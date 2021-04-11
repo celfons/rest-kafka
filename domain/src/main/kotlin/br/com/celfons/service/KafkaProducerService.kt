@@ -1,6 +1,6 @@
 package br.com.celfons.service
 
-interface KafkaProducer {
+interface KafkaProducerService {
 
     fun send(topic: String, message: String)
 
