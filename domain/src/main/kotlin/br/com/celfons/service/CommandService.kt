@@ -1,9 +1,10 @@
 package br.com.celfons.service
 
-import br.com.celfons.command.CreateUserCommand
+import br.com.celfons.commands.CreateUserCommand
+import br.com.celfons.events.CreatedUserEvent
 
 interface CommandService {
 
-    fun create(command: CreateUserCommand)
+    fun handler(command: CreateUserCommand): CreatedUserEvent
 
 }

@@ -16,7 +16,6 @@ dependencies {
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 	implementation ("org.springframework.kafka:spring-kafka:2.6.7")
-	implementation ("com.google.code.gson:gson:2.8.5")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

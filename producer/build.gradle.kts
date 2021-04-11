@@ -11,7 +11,6 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation ("org.springframework.kafka:spring-kafka:2.6.7")
-	implementation ("com.google.code.gson:gson:2.8.5")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

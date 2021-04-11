@@ -1,4 +1,4 @@
-package br.com.celfons.entity
+package br.com.celfons.repository.entity
 
 import java.time.LocalDateTime
 import java.time.LocalDateTime.now

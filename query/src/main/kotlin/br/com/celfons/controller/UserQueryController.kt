@@ -11,6 +11,6 @@ class UserQueryController(
     private val service: QueryService
 ): UserQueryApi {
 
-    override fun findAll(): List<UserResponse> = service.findAll().map { UserResponse(it.id!!, it.createAt!!) }
+    override fun findAll(): List<UserResponse> = service.findAll()
 
 }

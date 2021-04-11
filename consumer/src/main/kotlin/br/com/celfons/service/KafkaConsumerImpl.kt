@@ -1,7 +1,7 @@
 package br.com.celfons.service
 
-import br.com.celfons.command.UserCommand
-import com.google.gson.Gson
+import br.com.celfons.utils.toEvent
+import br.com.celfons.events.CreatedUserEvent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.support.KafkaHeaders
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 @Component
 class KafkaConsumerImpl {
 
-    @Autowired private lateinit var service: QueryService
+    @Autowired private lateinit var service: ProcessorService
 
     @KafkaListener(topics = ["\${kafka.topic.id}"], groupId = "\${kafka.group.id}")
     fun listen(
@@ -20,11 +20,12 @@ class KafkaConsumerImpl {
         @Payload message: String
     ) {
 
-        when (val command = Gson().fromJson(message, UserCommand::class.java)) {
-            is UserCommand.CreateUserCommand -> {
-                service.create(command)
+        when (val event = message.toEvent()) {
+            is CreatedUserEvent -> {
+                service.handler(event)
             }
         }
+
     }
 
 }

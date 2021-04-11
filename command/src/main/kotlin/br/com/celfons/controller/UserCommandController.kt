@@ -1,6 +1,6 @@
 package br.com.celfons.controller
 
-import br.com.celfons.command.CreateUserCommand
+import br.com.celfons.commands.CreateUserCommand
 import br.com.celfons.controller.request.UserRequest
 import br.com.celfons.service.CommandService
 import org.springframework.web.bind.annotation.RequestBody
@@ -13,11 +13,9 @@ class UserCommandController(
     val service: CommandService
 ): UserCommandApi {
 
-    override fun create(@RequestBody request: UserRequest) = try {
+    override fun create(@RequestBody request: UserRequest) {
         val command = CreateUserCommand(request.id)
-        service.create(command)
-    } catch (exception: Exception) {
-        throw exception
+        service.handler(command)
     }
 
 }
