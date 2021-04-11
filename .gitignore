@@ -37,7 +37,7 @@ out/
 .vscode/
 
 **/build/
-!src/**/build/
+!command/src/**/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting

@@ -1,8 +1,0 @@
-kafka:
-  topic.id: ksql
-  group.id: ksql
-
-spring:
-  kafka:
-    producer:
-      bootstrap-servers: 127.0.0.1:9092
