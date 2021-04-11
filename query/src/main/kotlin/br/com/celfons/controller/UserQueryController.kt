@@ -1,18 +1,16 @@
 package br.com.celfons.controller
 
-import br.com.celfons.domain.response.UserResponse
-import br.com.celfons.service.UserService
-import org.springframework.web.bind.annotation.GetMapping
+import br.com.celfons.controller.response.UserResponse
+import br.com.celfons.service.QueryService
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping(value = ["/user"])
 class UserQueryController(
-    private val service: UserService
-) {
+    private val service: QueryService
+): UserQueryApi {
 
-    @GetMapping
-    fun findAll(): List<UserResponse> = service.findAll()
+    override fun findAll(): List<UserResponse> = service.findAll().map { UserResponse(it.id!!, it.createAt!!) }
 
 }

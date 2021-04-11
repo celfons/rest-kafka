@@ -1,6 +1,6 @@
 package br.com.celfons.service
 
-import br.com.celfons.domain.request.UserRequest
+import br.com.celfons.command.UserCommand
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.annotation.KafkaListener
@@ -10,17 +10,21 @@ import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
 
 @Component
-class KafkaConsumerImpl : KafkaConsumer {
+class KafkaConsumerImpl {
 
-    @Autowired private lateinit var service: UserService
+    @Autowired private lateinit var service: QueryService
 
     @KafkaListener(topics = ["\${kafka.topic.id}"], groupId = "\${kafka.group.id}")
-    override fun listen(
+    fun listen(
         @Header(KafkaHeaders.RECEIVED_TOPIC) topic: String,
         @Payload message: String
     ) {
-        val request = Gson().fromJson(message, UserRequest::class.java)
-        service.create(request)
+
+        when (val command = Gson().fromJson(message, UserCommand::class.java)) {
+            is UserCommand.CreateUserCommand -> {
+                service.create(command)
+            }
+        }
     }
 
 }

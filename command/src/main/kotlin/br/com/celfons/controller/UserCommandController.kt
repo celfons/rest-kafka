@@ -1,9 +1,8 @@
 package br.com.celfons.controller
 
-import br.com.celfons.domain.request.UserRequest
-import br.com.celfons.service.KafkaProducer
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.web.bind.annotation.PostMapping
+import br.com.celfons.command.CreateUserCommand
+import br.com.celfons.controller.request.UserRequest
+import br.com.celfons.service.CommandService
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -11,12 +10,14 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping(value = ["/user"])
 class UserCommandController(
-    private val producer: KafkaProducer,
-    @Value("\${kafka.topic.id}")
-    private val topic: String
-) {
+    val service: CommandService
+): UserCommandApi {
 
-    @PostMapping
-    fun create(@RequestBody request: UserRequest) = producer.createUser(request, topic)
+    override fun create(@RequestBody request: UserRequest) = try {
+        val command = CreateUserCommand(request.id)
+        service.create(command)
+    } catch (exception: Exception) {
+        throw exception
+    }
 
 }

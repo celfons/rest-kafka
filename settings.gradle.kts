@@ -1,7 +1,9 @@
 rootProject.name = "ksql"
 
-include ("commons")
 include ("command")
+include ("command-api")
 include ("consumer")
+include ("domain")
 include ("producer")
 include ("query")
+include ("query-api")
